@@ -1,0 +1,759 @@
+<!DOCTYPE html><html><head>
+      <title>markdown-tutorial</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <div><h1 class="mume-header" id="summary-of-markdown-syntax">Summary of Markdown Syntax</h1>
+
+<ul>
+<li><a href="#summary-of-markdown-syntax">Summary of Markdown Syntax</a>
+<ul>
+<li><a href="#headings">Headings</a></li>
+<li><a href="#paragraphs">Paragraphs</a>
+<ul>
+<li><a href="#line-breaks">Line breaks</a></li>
+</ul>
+</li>
+<li><a href="#emphasis">Emphasis</a>
+<ul>
+<li><a href="#bold">Bold</a></li>
+<li><a href="#italic"><em>Italic</em></a></li>
+<li><a href="#bold-and-italic">Bold and <em>Italic</em></a></li>
+</ul>
+</li>
+<li><a href="#blockquotes">Blockquotes</a>
+<ul>
+<li><a href="#blockquotes-with-multiple-paragraphs">Blockquotes with multiple paragraphs</a></li>
+<li><a href="#nested-blockquotes">Nested blockquotes</a></li>
+<li><a href="#blockquotes-with-other-elements">Blockquotes with Other Elements</a></li>
+</ul>
+</li>
+<li><a href="#lists">Lists</a>
+<ul>
+<li><a href="#ordered-lists">Ordered lists</a></li>
+<li><a href="#unordered-lists">Unordered lists</a></li>
+<li><a href="#starting-unordered-list-items-with-numbers">Starting Unordered List Items With Numbers</a></li>
+</ul>
+</li>
+<li><a href="#adding-elements-in-lists">Adding elements in lists</a>
+<ul>
+<li><a href="#nesting-lists">Nesting Lists</a></li>
+</ul>
+</li>
+<li><a href="#code-blocks">Code Blocks</a></li>
+<li><a href="#fenced-code-blocks">Fenced Code Blocks</a></li>
+<li><a href="#syntax-highlighting">Syntax Highlighting</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#code">Code</a></li>
+<li><a href="#horizontal-rules">Horizontal Rules</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#linking-images">Linking Images</a></li>
+<li><a href="#adding-titles">Adding Titles</a></li>
+<li><a href="#urls-and-email-addresses">URLs and Email Addresses</a></li>
+<li><a href="#formatting-links">Formatting Links</a></li>
+<li><a href="#escaping-characters">Escaping Characters</a></li>
+<li><a href="#tables">Tables</a>
+<ul>
+<li><a href="#alignment">Alignment</a></li>
+</ul>
+</li>
+<li><a href="#task-list">Task List</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="headings">Headings</h2>
+
+<p>To create a heading, add number signs (#) in front of a word or phrase. The number of number signs you use should correspond to the heading level. For example, to create a heading level three <code>&lt;h3&gt;</code>, use three number signs (e.g., ### My Header)</p>
+<pre class="language-text"># Heading level 1 // --&gt; &lt;h1&gt;&lt;/h1&gt;
+# Heading level 2 // --&gt; &lt;h2&gt;&lt;/h2&gt;
+# Heading level 3 // --&gt; &lt;h3&gt;&lt;/h3&gt;
+# Heading level 4 // --&gt; &lt;h4&gt;&lt;/h4&gt;
+# Heading level 5 // --&gt; &lt;h5&gt;&lt;/h5&gt;
+# Heading level 6 // --&gt; &lt;h6&gt;&lt;/h6&gt;
+</pre>
+<blockquote>
+<p><strong>Best practice</strong><br>
+Try to put a blank line before and after a header.</p>
+</blockquote>
+<h2 class="mume-header" id="paragraphs">Paragraphs</h2>
+
+<p>To create paragraphs, use a blank line to separate one or more lines of text.</p>
+<p><em>Don&apos;t put tabs or spaces in front of your paragraphs.</em></p>
+<p><em>Keep lines left-aligned like this.</em></p>
+<h3 class="mume-header" id="line-breaks">Line breaks</h3>
+
+<p>First line with two spaces after.<br>
+And the next line.</p>
+<p>First line with the HTML tag <code>&lt;br&gt;</code>after.<br><br>
+And the next line.</p>
+<h2 class="mume-header" id="emphasis">Emphasis</h2>
+
+<h3 class="mume-header" id="bold">Bold</h3>
+
+<p>To bold text, add two asterisks or underscores before and after a word or phrase. To bold the middle of a word for emphasis, add two asterisks without spaces around the letters.</p>
+<pre class="language-text">I just love **bold text**
+</pre>
+<p>or</p>
+<pre class="language-text">I just love __bold text__.
+</pre>
+<p><strong>Rendered Output</strong></p>
+<p>I just love <strong>bold text</strong></p>
+<pre class="language-text">love**is**bold
+</pre>
+<p><strong>Result</strong> &gt; Love<strong>is</strong>bold</p>
+<h3 class="mume-header" id="italic"><em>Italic</em></h3>
+
+<pre class="language-text">Italicized text is the *cat&apos;s meow*.
+</pre>
+<p><strong>Result</strong></p>
+<p>Italicized text is the <em>cat&apos;s meow</em>.</p>
+<h3 class="mume-header" id="bold-and-italic">Bold and <em>Italic</em></h3>
+
+<p><strong>Markdown</strong></p>
+<pre class="language-text">This text is ***really important***.
+This text is ___really important___.
+This text is __*really important*__.
+This text is **_really important_**.
+</pre>
+<p><strong>Result</strong></p>
+<p>This text is <em><strong>really important</strong></em>.</p>
+<h2 class="mume-header" id="blockquotes">Blockquotes</h2>
+
+<p>To create a blockquote, add a <code>&gt;</code> in front of a paragraph.</p>
+<pre class="language-text">&gt; Dorothy followed her through many of the beautiful rooms in her castle.
+</pre>
+<p><strong>Result</strong></p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+</blockquote>
+<h3 class="mume-header" id="blockquotes-with-multiple-paragraphs">Blockquotes with multiple paragraphs</h3>
+
+<p>Add a <code>&gt;</code> on the blank lines between the paragraphs.</p>
+<pre class="language-text">&gt; Dorothy followed her through many of the beautiful rooms in her castle.
+&gt;
+&gt; The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+</pre>
+<p><strong>Result</strong></p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
+</blockquote>
+<h3 class="mume-header" id="nested-blockquotes">Nested blockquotes</h3>
+
+<p>Add a <code>&gt;&gt;</code> in front of the paragraph you want to nest.</p>
+<pre class="language-text">&gt; Dorothy followed her through many of the beautiful rooms in her castle.
+&gt;
+&gt;&gt; The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+</pre>
+<p><strong>Result</strong></p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+<blockquote>
+<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
+</blockquote>
+</blockquote>
+<h3 class="mume-header" id="blockquotes-with-other-elements">Blockquotes with Other Elements</h3>
+
+<pre class="language-text">&gt; #### The quarterly results look great!
+&gt;
+&gt; - Revenue was off the chart.
+&gt; - Profits were higher than ever.
+&gt;
+&gt;  *Everything* is going according to **plan**.
+</pre>
+<p><strong>Result</strong></p>
+<blockquote>
+<h4>The quarterly results look great!</h4>
+<ul>
+<li>Revenue was off the chart.</li>
+<li>Profits were higher than ever.</li>
+</ul>
+<p><em>Everything</em> is going according to <strong>plan</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Best practice</strong><br>
+Try to put a blank line before and after a blockquote.</p>
+</blockquote>
+<h2 class="mume-header" id="lists">Lists</h2>
+
+<h3 class="mume-header" id="ordered-lists">Ordered lists</h3>
+
+<p>To create an ordered list, add line items with numbers followed by periods. The numbers don&#x2019;t have to be in numerical order, but the list should start with the number one</p>
+<p><code>1. First item</code><br>
+<code>2. Second item</code><br>
+<code>3. Third item</code><br>
+<code>4. Fourth item</code></p>
+<h3 class="mume-header" id="unordered-lists">Unordered lists</h3>
+
+<p>To create an unordered list, add dashes <code>-</code>, asterisks <code>*</code>, or plus signs <code>+</code> in front of line items. Indent one or more items to create a nested list.</p>
+<pre class="language-text">- First item
+- Second item
+- Third item
+- Fourth item
+</pre>
+<p><strong>Result</strong></p>
+<ul>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item</li>
+<li>Fourth item</li>
+</ul>
+<h3 class="mume-header" id="starting-unordered-list-items-with-numbers">Starting Unordered List Items With Numbers</h3>
+
+<p>If you need to start an unordered list item with a number followed by a period, you can use a backslash <code>\</code> to escape the period.</p>
+<pre class="language-text">- 1968\. A great year!
+</pre>
+<p><strong>Result</strong></p>
+<ul>
+<li>1968. A great year!</li>
+</ul>
+<h2 class="mume-header" id="adding-elements-in-lists">Adding elements in lists</h2>
+
+<p>To add another element in a list while preserving the continuity of the list, indent the element four spaces or one tab, as shown in the following examples</p>
+<p><strong>Paragraphs</strong></p>
+<pre class="language-text">* This is the first list item.
+* Here&apos;s the second list item.
+
+    I need to add another paragraph below the second list item.
+
+* And here&apos;s the third list item.
+</pre>
+<p><strong>Result</strong></p>
+<ul>
+<li>
+<p>This is the first list item.</p>
+</li>
+<li>
+<p>Here&apos;s the second list item.</p>
+<p>I need to add another paragraph below the second list item.</p>
+</li>
+<li>
+<p>And here&apos;s the third list item.</p>
+</li>
+</ul>
+<p><strong>Blockquote</strong></p>
+<pre class="language-text">* This is the first list item.
+* Here&apos;s the second list item.
+
+    &gt; A blockquote would look great below the second list item.
+
+* And here&apos;s the third list item.
+</pre>
+<p><strong>Result</strong></p>
+<ul>
+<li>
+<p>This is the first list item.</p>
+</li>
+<li>
+<p>Here&apos;s the second list item.</p>
+<blockquote>
+<p>A blockquote would look great below the second list item.</p>
+</blockquote>
+</li>
+<li>
+<p>And here&apos;s the third list item.</p>
+</li>
+</ul>
+<h3 class="mume-header" id="nesting-lists">Nesting Lists</h3>
+
+<pre class="language-text">1. First item
+2. Second item
+3. Third item
+    - Indented item
+    - Indented item
+4. Fourth item
+</pre>
+<p><strong>Result</strong></p>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item
+<ul>
+<li>Indented item</li>
+<li>Indented item</li>
+</ul>
+</li>
+<li>Fourth item</li>
+</ol>
+<h2 class="mume-header" id="code-blocks">Code Blocks</h2>
+
+<p>Code blocks are normally indented four spaces or one tab. When they&#x2019;re in a list, indent them eight spaces or two tabs.</p>
+<pre class="language-text">1. Open the file.
+2. Find the following code block on line 21:
+
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;title&gt;Test&lt;/title&gt;
+          &lt;/head&gt;
+
+3. Update the title to match the name of your website.
+</pre>
+<p><strong>Result</strong></p>
+<ol>
+<li>
+<p>Open the file.</p>
+</li>
+<li>
+<p>Find the following code block on line 21:</p>
+<pre class="language-text"> &lt;html&gt;
+   &lt;head&gt;
+     &lt;title&gt;Test&lt;/title&gt;
+   &lt;/head&gt;
+</pre>
+</li>
+<li>
+<p>Update the title to match the name of your website.</p>
+</li>
+</ol>
+<h2 class="mume-header" id="fenced-code-blocks">Fenced Code Blocks</h2>
+
+<p>The basic Markdown syntax allows you to create code blocks by indenting lines by four spaces or one tab. If you find that inconvenient, try using fenced code blocks. Depending on your Markdown processor or editor, you&#x2019;ll use three backticks (```) or three tildes (~~~) on the lines before and after the code block. The best part? You don&#x2019;t have to indent any lines!</p>
+<pre class="language-text">```
+{
+&quot;firstName&quot;: &quot;John&quot;,
+&quot;lastName&quot;: &quot;Smith&quot;,
+&quot;age&quot;: 25
+}
+```
+</pre>
+<p><strong>result</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>{
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Smith&quot;,
+  &quot;age&quot;: 25
+}
+</code></pre><h2 class="mume-header" id="syntax-highlighting">Syntax Highlighting</h2>
+
+<p>To add syntax highlighting, specify a language next to the backticks before the fenced code block.</p>
+<pre class="language-text">```json
+{
+&quot;firstName&quot;: &quot;John&quot;,
+&quot;lastName&quot;: &quot;Smith&quot;,
+&quot;age&quot;: 25
+}
+```
+</pre>
+<p><strong>Result</strong></p>
+<pre data-role="codeBlock" data-info="json" class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;firstName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;John&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lastName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Smith&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;age&quot;</span><span class="token operator">:</span> <span class="token number">25</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="images">Images</h2>
+
+<p>To add an image, add an exclamation mark (!), followed by alt text in brackets, and the path or URL to the image asset in parentheses. You can optionally add a title in quotation marks after the path or URL.</p>
+<pre class="language-text">  1. Open the file containing the Linux mascot.
+  2. Marvel at its beauty.
+
+      ![Tux, the Linux mascot](/assets/images/tux.png)
+
+  3. Close the file.
+</pre>
+<p><strong>Result</strong></p>
+<ol>
+<li>
+<p>Open the file containing the Linux mascot.</p>
+</li>
+<li>
+<p>Marvel at its beauty.</p>
+<p><img src="tux.avif" alt="Tux, the Linux mascot"></p>
+</li>
+<li>
+<p>Close the file.</p>
+</li>
+</ol>
+<h2 class="mume-header" id="code">Code</h2>
+
+<p>To denote a word or phrase as code, enclose it in backticks (`)</p>
+<pre class="language-text">At the command prompt, type `nano`.
+</pre>
+<p><strong>Result</strong></p>
+<p>At the command prompt, type <code>nano</code>.</p>
+<h2 class="mume-header" id="horizontal-rules">Horizontal Rules</h2>
+
+<hr>
+<p>To create a horizontal rule, use three or more asterisks <code>***</code>, dashes <code>---</code>, or underscores <code>___</code> on a line by themselves.</p>
+<h2 class="mume-header" id="links">Links</h2>
+
+<p>To create a link, enclose the link text in brackets (e.g., [Duck Duck Go]) and then follow it immediately with the URL in parentheses (e.g., (<a href="https://duckduckgo.com">https://duckduckgo.com</a>)).</p>
+<pre class="language-text">My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
+</pre>
+<p><strong>Result</strong></p>
+<p>My favorite search engine is <a href="https://duckduckgo.com">Duck Duck Go</a>.</p>
+<h2 class="mume-header" id="linking-images">Linking Images</h2>
+
+<p>To add a link to an image, enclose the Markdown for the image in brackets, and then add the link in parentheses.</p>
+<pre class="language-text">[![An old rock in the desert](/assets/images/shiprock.jpg &quot;Shiprock, New Mexico by Beau Rogers&quot;)](https://www.flickr.com/photos/beaurogers/31833779864/in/photolist-Qv3rFw-34mt9F-a9Cmfy-5Ha3Zi-9msKdv-o3hgjr-hWpUte-4WMsJ1-KUQ8N-deshUb-vssBD-6CQci6-8AFCiD-zsJWT-nNfsgB-dPDwZJ-bn9JGn-5HtSXY-6CUhAL-a4UTXB-ugPum-KUPSo-fBLNm-6CUmpy-4WMsc9-8a7D3T-83KJev-6CQ2bK-nNusHJ-a78rQH-nw3NvT-7aq2qf-8wwBso-3nNceh-ugSKP-4mh4kh-bbeeqH-a7biME-q3PtTf-brFpgb-cg38zw-bXMZc-nJPELD-f58Lmo-bXMYG-bz8AAi-bxNtNT-bXMYi-bXMY6-bXMYv)
+</pre>
+<h2 class="mume-header" id="adding-titles">Adding Titles</h2>
+
+<p>You can optionally add a title for a link. This will appear as a tooltip when the user hovers over the link. To add a title, enclose it in quotation marks after the URL.</p>
+<pre class="language-text">My favorite search engine is [Duck Duck Go](https://duckduckgo.com &quot;The best search engine for privacy&quot;).
+</pre>
+<p><strong>Result</strong></p>
+<p>My favorite search engine is <a href="https://duckduckgo.com" title="The best search engine for privacy">Duck Duck Go</a>.</p>
+<h2 class="mume-header" id="urls-and-email-addresses">URLs and Email Addresses</h2>
+
+<p>To quickly turn a URL or email address into a link, enclose it in angle brackets.</p>
+<pre class="language-text">&lt;https://www.markdownguide.org&gt;
+&lt;fake@example.com&gt;
+</pre>
+<p><strong>Result</strong></p>
+<p><a href="https://www.markdownguide.org">https://www.markdownguide.org</a><br>
+<a href="mailto:fake@example.com">fake@example.com</a></p>
+<h2 class="mume-header" id="formatting-links">Formatting Links</h2>
+
+<p>To emphasize links, add asterisks before and after the brackets and parentheses. To denote links as code, add backticks in the brackets.</p>
+<pre class="language-text">I love supporting the **[EFF](https://eff.org)**.
+This is the *[Markdown Guide](https://www.markdownguide.org)*.
+See the section on [`code`](#code).
+</pre>
+<p><strong>The Result</strong></p>
+<p>I love supporting the <strong><a href="https://eff.org">EFF</a></strong>.<br>
+This is the <em><a href="https://www.markdownguide.org">Markdown Guide</a></em>.<br>
+See the section on <a href="#code"><code>code</code></a>.</p>
+<h2 class="mume-header" id="escaping-characters">Escaping Characters</h2>
+
+<p>To display a literal character that would otherwise be used to format text in a Markdown document, add a backslash <code>\</code> in front of the character.</p>
+<h2 class="mume-header" id="tables">Tables</h2>
+
+<p>To add a table, use three or more hyphens (---) to create each column&#x2019;s header, and use pipes (|) to separate each column. For compatibility, you should also add a pipe on either end of the row.</p>
+<pre class="language-text">| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+</pre>
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td>Title</td>
+</tr>
+<tr>
+<td>Paragraph</td>
+<td>Text</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="alignment">Alignment</h3>
+
+<p>You can align text in the columns to the left, right, or center by adding a colon (&#x1F603; to the left, right, or on both side of the hyphens within the header row.</p>
+<pre class="language-text">| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here&apos;s this   |
+| Paragraph   | Text        | And more      |
+</pre>
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Syntax</th>
+<th style="text-align:center">Description</th>
+<th style="text-align:right">Test Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Header</td>
+<td style="text-align:center">Title</td>
+<td style="text-align:right">Here&apos;s this</td>
+</tr>
+<tr>
+<td style="text-align:left">Paragraph</td>
+<td style="text-align:center">Text</td>
+<td style="text-align:right">And more</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="task-list">Task List</h2>
+
+<p>In Markdown applications that support task lists, checkboxes will be displayed next to the content. To create a task list, add dashes (-) and brackets with a space ([ ]) in front of task list items. To select a checkbox, add an x in between the brackets ([x]).</p>
+<pre data-role="codeBlock" data-info class="language-"><code>- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+</code></pre><p><strong>Output</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked> Write the press release</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Update the website</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Contact the media.</li>
+</ul>
+</div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
